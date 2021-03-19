@@ -22,12 +22,12 @@
                 image: us.icr.io/dws-aa-poc/angularnode:latest
                 ports:
                   - containerPort: 3000
-            imagePullSecrets:
-            - name: all-icr-io                  
                 env:
                   - name: MONGODB_URI
                     value: mongodb://mongo:27017/test
                 imagePullPolicy: Always
+            imagePullSecrets:
+            - name: all-icr-io                  
 
 - name: Create web service 
   k8s:
