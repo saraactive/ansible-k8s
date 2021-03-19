@@ -2,26 +2,26 @@
   k8s:
     kubeconfig: "{{ kube_config.stdout }}"
     api_version: v1
-    namespace: default
+    namespace: poc
     definition:
       kind: Deployment
       metadata:
-        name: webapp
+        name: angularnode
       spec:
         replicas: 1
         selector:
           matchLabels:
-            app: webapp
+            app: angularnode
         template:
           metadata:
             labels:
-              app: webapp
+              app: angularnode
           spec:
             containers:
               - name: app
-                image: rvsingh011/hackathon-starter_web
+                image: us.icr.io/dws-aa-poc/angularnode:latest
                 ports:
-                  - containerPort: 8080
+                  - containerPort: 3000
                 env:
                   - name: MONGODB_URI
                     value: mongodb://mongo:27017/test
@@ -31,15 +31,15 @@
   k8s:
     kubeconfig: "{{ kube_config.stdout }}"
     api_version: v1
-    namespace: default
+    namespace: poc
     definition:
       kind: Service
       metadata:
-        name: webapp-service
+        name: angularnode-service
       spec:
         selector:
-          app: webapp
+          app: angularnode
         ports:
-          - port: 80
-            targetPort: 8080
+          - port: 3000
+            targetPort: 3000
         type: LoadBalancer 
