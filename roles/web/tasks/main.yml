@@ -2,7 +2,7 @@
   k8s:
     kubeconfig: "{{ kube_config.stdout }}"
     api_version: v1
-    namespace: default
+    namespace: poc
     definition:
       kind: Deployment
       metadata:
@@ -33,7 +33,7 @@
   k8s:
     kubeconfig: "{{ kube_config.stdout }}"
     api_version: v1
-    namespace: default
+    namespace: poc
     definition:
       kind: Service
       metadata:
